@@ -15,7 +15,7 @@ def main():
     time.sleep(5)
 
     # Scroll to the bottom of page
-    # scroller.scroll(driver)
+    scroller.scroll(driver)
 
     company_list = driver.find_elements_by_class_name("styles-module__company___1UVnl")
     company_industries_array = []
