@@ -27,12 +27,16 @@ def main():
         company_location = each_company.find_elements_by_class_name("styles-module__coLocation___yhKam")[0]
         company_YC_batch = each_company.find_elements_by_class_name("styles-module__pill___1Cdn5")[0]
         company_industries_array.append(industries(each_company, company_counter))
+        
         company_counter += 1
+
         # Get information from new tab
         information_from_new_tab = switch_tabs(driver, company_name)
         company_YC_profile, company_domain = information_from_new_tab[0], information_from_new_tab[1]
+
         # Saving company info 
         company_info = [company_name.text, company_location.text, company_YC_profile, company_domain, company_YC_batch.text, ", ".join(company_industries_array[company_counter - 2])]
+        
         # Saving into company_information
         company_information.append(company_info)
         founder_information.append(information_from_new_tab[2])
@@ -61,8 +65,8 @@ def industries(each_company, company_counter):
         # Append new industry to company
         each_company_industries_array.append(company_industries.text)
         # Update industry counter, update new industry HTML page location
-        industry_counter +=1
-        industries_page_location = "/html/body/div[1]/section/div/div/div[2]/div[4]/a[" + str(company_counter) + "]/div[2]/div[3]/span[" + str(industry_counter) + "]"
+        industry_counter += 1
+        industries_page_location = f'/html/body/div[1]/section/div/div/div[2]/div[4]/a[{company_counter}]/div[2]/div[3]/span[{industry_counter}]'
     return each_company_industries_array
 
 def switch_tabs(driver, company_name):
@@ -92,9 +96,9 @@ def founder_profile(driver):
 
     founder_counter = 1
 
-    founder_name_page_location = '/html/body/div[1]/section[2]/div[' + str(founder_counter) + ']/div[1]/h3'
-    founder_name_side_location = '/html/body/div[1]/section[2]/div/div[' + str(founder_counter) + ']/div/div/div[1]'
-    founder_profile_location = '/html/body/div[1]/section[2]/div[' + str(founder_counter) + ']/div[1]/p'
+    founder_name_page_location = f'/html/body/div[1]/section[2]/div[{founder_counter}]/div[1]/h3'
+    founder_name_side_location = f'/html/body/div[1]/section[2]/div/div[{founder_counter}]/div/div/div[1]'
+    founder_profile_location = f'/html/body/div[1]/section[2]/div[{founder_counter}]/div[1]/p'
 
     company_name = driver.find_element_by_xpath('/html/body/div[1]/section[1]/div[1]/div[2]/h1')
     founder_info.append(company_name.text)
@@ -107,15 +111,15 @@ def founder_profile(driver):
             founder_info.append(founder_profile.text)
             # Update page location
             founder_counter += 1
-            founder_name_page_location = '/html/body/div[1]/section[2]/div[' + str(founder_counter) + ']/div[1]/h3'
-            founder_profile_location = '/html/body/div[1]/section[2]/div[' + str(founder_counter) + ']/div[1]/p'
+            founder_name_page_location = f'/html/body/div[1]/section[2]/div[{founder_counter}]/div[1]/h3'
+            founder_profile_location = f'/html/body/div[1]/section[2]/div[{founder_counter}]/div[1]/p'
     else:
         while(len(driver.find_elements_by_xpath(founder_name_side_location)) > 0):
             founders = driver.find_elements_by_xpath(founder_name_side_location)[0]
             founder_info.append(founders.text)
             # Update page location
-            founder_counter +=1
-            founder_name_side_location = '/html/body/div[1]/section[2]/div/div[' + str(founder_counter) + ']/div/div/div[1]'
+            founder_counter += 1
+            founder_name_side_location = f'/html/body/div[1]/section[2]/div/div[{founder_counter}]/div/div/div[1]'
     return founder_info
 
 # Run main

@@ -144,3 +144,5 @@ def command_line():
     if args.Summer05:
         string = string + "batch=S05&"
     return string
+
+command_line()
