@@ -3,7 +3,8 @@
 To use the scraper, type in the command line
 python scraper.py
 
-This will scrape the Company Name, Location, YC Profile Page, Domain Name, YC batch, and Industries of all the YC companies within 'https://www.ycombinator.com/companies' and put into a CSV
+This will scrape the Company Name, Location, YC Profile Page, Domain Name, YC batch, and Industries of all the YC companies within 'https://www.ycombinator.com/companies' 
+and put into a CSV
 This will also scrape the Founder info from the YC profile page and put into a separate CSV containing the list of Founders and their bio (if present)
 
 If you wish to specify the batch, type the batch type in the command line 
